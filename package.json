@@ -1,20 +1,35 @@
 {
-  "name": "s2-sp-os-grand-unified-engine",
-  "version": "3.0.0",
-  "description": "The Grand Unified S2 Space Operating System Engine. Integrates Lord-Guest Asymmetric Governance, Dynamic Boundary Scanning, Multimodal Fusion for Illusion Resolution, and Swarm Sync Right-of-Way Arbitration into a single robust Embodied AI pipeline.",
+  "name": "s2-embodied-spatial-brain",
+  "version": "1.0.0",
+  "description": "S2 Embodied Spatial Brain. The ultimate neural hub for physical causal deduction and zero-trust multi-agent synergy. Integrates S2-HAL hardware standards, 9-Grid Boundary Scans, Multimodal Illusion Resolution, and Lord-Guest Asymmetric Governance into a single pipeline.",
   "main": "handler.py",
-  "scripts": { "sim": "python3 simulations/demo_grand_unified_lifecycle.py" },
+  "scripts": {
+    "start": "python3 handler.py",
+    "sim": "python3 simulations/demo_grand_unified_lifecycle.py"
+  },
   "openclaw": {
     "extensions": ["openclaw.plugin.json"],
     "compat": { "pluginApi": ">=3.22.0" },
+    "build": { "openclawVersion": "4.2.0" },
     "capabilities": [
-      "spatio_temporal_visa", 
+      "s2_hal_integration",
+      "spatio_temporal_visa",
       "lord_guest_negotiation",
       "mmwave_boundary_scanning",
       "multimodal_latent_fusion",
       "pki_swarm_sync_arbitration",
       "immutable_spatial_ledger"
-    ]
+    ],
+    "configSchema": {
+      "type": "object",
+      "required": ["S2_SWARM_PKI_ROOT"],
+      "properties": {
+        "S2_SWARM_PKI_ROOT": {
+          "type": "string",
+          "description": "PKI root for mesh authentication in Multi-Agent Swarms."
+        }
+      }
+    }
   },
   "author": "Space2.world (Miles Xiang)"
 }
