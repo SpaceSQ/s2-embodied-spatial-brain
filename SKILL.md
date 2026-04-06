@@ -1,7 +1,7 @@
 ---
 name: s2-indoor-jurisdiction-negotiator
 description: The ultimate survival directive for Guest Robots operating in Lord-governed SSSU spaces. Enforces Visa protocols, Negotiation APIs, and Ledger awareness.
-version: 2.0.0
+version: 2.0.1
 author: Space2.world (Miles Xiang)
 tags: [Embodied-AI, Spatial-Governance, Ledger, Zero-Trust]
 allowed-tools: [manage_spatial_jurisdiction]

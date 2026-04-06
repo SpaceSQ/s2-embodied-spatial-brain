@@ -1,12 +1,12 @@
 {
-  "id": "s2-indoor-jurisdiction-negotiator",
-  "pluginId": "s2-indoor-jurisdiction-negotiator",
-  "version": "2.0.0",
+  "id": "s2-embodied-spatial-brain",
+  "pluginId": "s2-embodied-spatial-brain",
+  "version": "2.0.1",
   "type": "native-code",
   "entry": "handler.py",
   "runtime": "python3",
   "permissions": {
-    "network": ["localhost"],
-    "tools": ["manage_spatial_jurisdiction"]
+    "network": ["localhost", "p2p_mesh"],
+    "tools": ["s2_embodied_brain_execute_step"]
   }
 }

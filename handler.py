@@ -5,32 +5,22 @@ import json
 from core.visa_manager import SpatioTemporalVisaManager
 from core.spatial_ledger import SpatialLedger
 from core.lord_brain import LordGovernanceBrain
+from core.robot_navigation_pipeline import S2RobotNavigationPipeline
 
-class S2JurisdictionHandler:
+class S2EmbodiedSpatialBrain:
     def __init__(self):
         self.visa_mgr = SpatioTemporalVisaManager()
         self.ledger = SpatialLedger()
         self.lord = LordGovernanceBrain(self.visa_mgr, self.ledger)
-        # 单例模式存储，确保进程内的测试数据不丢失
-        self._bootstrap_system()
-
-    def _bootstrap_system(self):
-        """系统初始化，预发一个签证用于测试"""
-        self.test_visa = self.visa_mgr.issue_visa("TEST-BOT-001", "DELIVERY", ["SSSU-CORRIDOR"])
 
     def process_tool_call(self, args: dict) -> str:
         try:
             action = args.get("action")
-            res = {}
             if action == "REQUEST_VISA":
                 res = self.visa_mgr.issue_visa(args.get("robot_id"), args.get("task"), args.get("requested_grids", []))
-            elif action == "NEGOTIATE_ENV":
-                res = self.lord.negotiate_environment(
-                    args.get("visa_token"), args.get("robot_id"), args.get("element"), 
-                    float(args.get("value", 0)), args.get("grid_id")
-                )
-            elif action == "REPORT_ANOMALY":
-                res = self.lord.emergency_override(args.get("robot_id"), args.get("grid_id"), args.get("violation"))
+            elif action == "NAVIGATE_STEP":
+                pipeline = S2RobotNavigationPipeline(args.get("robot_id"), args.get("visa_token"), self.lord)
+                res = pipeline.execute_step(args.get("target_hex"), args.get("sensors"), args.get("peer_state"))
             else:
                 res = {"status": "error", "message": "Unknown action."}
             return json.dumps({"status": "success", "data": res}, ensure_ascii=False)
@@ -38,8 +28,6 @@ class S2JurisdictionHandler:
             return json.dumps({"status": "error", "message": str(e)})
 
 if __name__ == "__main__":
-    handler = S2JurisdictionHandler()
-    if len(sys.argv) > 1:
-        print(handler.process_tool_call(json.loads(sys.argv[1])))
-    else:
-        print(json.dumps({"status": "ready", "message": "S2 Jurisdiction Engine Online"}))
+    brain = S2EmbodiedSpatialBrain()
+    if len(sys.argv) > 1: print(brain.process_tool_call(json.loads(sys.argv[1])))
+    else: print(json.dumps({"status": "ready", "message": "S2 Embodied Spatial Brain Online"}))
