@@ -1,6 +1,6 @@
 {
   "id": "s2-embodied-spatial-brain",
-  "pluginId": "s2-embodied-spatial-brain",
+  "pluginId": "s2-indoor-jurisdiction-negotiator",
   "version": "2.0.1",
   "type": "native-code",
   "entry": "handler.py",
