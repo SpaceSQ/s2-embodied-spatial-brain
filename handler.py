@@ -20,14 +20,22 @@ class S2EmbodiedSpatialBrain:
                 res = self.visa_mgr.issue_visa(args.get("robot_id"), args.get("task"), args.get("requested_grids", []))
             elif action == "NAVIGATE_STEP":
                 pipeline = S2RobotNavigationPipeline(args.get("robot_id"), args.get("visa_token"), self.lord)
-                res = pipeline.execute_step(args.get("target_hex"), args.get("sensors"), args.get("peer_state"))
+                
+                # 严格解析运动学与传感器载荷
+                sensors = args.get("sensors", {})
+                kinematics = args.get("kinematics", {"mass_kg": 20.0, "velocity_m_s": 0.0})
+                peer_state = args.get("peer_state")
+                
+                res = pipeline.execute_step(args.get("target_hex"), sensors, kinematics, peer_state)
             else:
-                res = {"status": "error", "message": "Unknown action."}
+                res = {"status": "error", "message": "Unknown action. Use REQUEST_VISA or NAVIGATE_STEP."}
             return json.dumps({"status": "success", "data": res}, ensure_ascii=False)
         except Exception as e:
             return json.dumps({"status": "error", "message": str(e)})
 
 if __name__ == "__main__":
     brain = S2EmbodiedSpatialBrain()
-    if len(sys.argv) > 1: print(brain.process_tool_call(json.loads(sys.argv[1])))
-    else: print(json.dumps({"status": "ready", "message": "S2 Embodied Spatial Brain Online"}))
+    if len(sys.argv) > 1:
+        print(brain.process_tool_call(json.loads(sys.argv[1])))
+    else:
+        print(json.dumps({"status": "ready", "message": "S2 Embodied Spatial Brain Online"}))
