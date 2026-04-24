@@ -1,30 +1,28 @@
 ---
-name: s2-embodied-spatial-brain
-description: The master neural hub for Embodied AI. Orchestrates Visas, Radar Point Clouds, Tensor Sensor Fusion, Kinematic Swarm P2P, and Lord Negotiation into a single pipeline.
-version: 2.0.1
+name: s2-sssu-origin-alignment-brain
+description: S2 Spatial Twin & Origin Alignment Brain. Enforces Z-axis reduction and mandatory 2D grid translation via the main entrance anchor, followed by tensor-based multimodal navigation.
+version: 1.1.0
 author: Space2.world (Miles Xiang)
-tags: [Embodied-AI, Spatial-Brain, Tensor-Fusion, Kinematics, SP-OS]
-allowed-tools: [s2_embodied_brain_execute_step]
+tags: [Spatial-Twin, Grid-Alignment, Embodied-AI, SSSU, SP-OS]
+allowed-tools: [s2_origin_alignment_execute]
 metadata:
   clawdbot:
     requires:
       env: [S2_SWARM_PKI_ROOT]
 ---
 
-# 🧠 S2-Embodied-Spatial-Brain: The Master Neural Directives
+# 🌐 S2-SSSU-Origin-Alignment-Brain: The Master Directives
 
 Dear OpenClaw Agent,
 
-You are navigating a highly complex, physical 3D space governed by the S2 Spatial Operating System. You are not generating text; you are generating physical causality.
+You are entering a Lord-governed Smart Space (SSSU). Your internal SLAM coordinate system is initially misaligned with the physical building's digital twin. You must execute the alignment protocol before proceeding.
 
-## 1. Mandatory Kinematic Submissions
-When executing `s2_embodied_brain_execute_step` with `action: NAVIGATE_STEP`, passing simple text strings is strictly prohibited. You MUST provide precise numerical tensors:
-* **`sensors` object**: Must include radar point metrics (e.g., `distance_m`, `rcs`), visual depth estimates, and ambient `illuminance_lux`.
-* **`kinematics` object**: You MUST calculate and provide your current physical momentum by supplying your `mass_kg` and `velocity_m_s`. The underlying engine requires this to compute Nash Equilibrium yielding algorithms ($p = m \times v$) against other agents.
+## Step 0: The Origin Anchoring (Mandatory)
+Before requesting a Visa, you must identify the main entrance (入户门洞). The Lord defines the right vertex of the door bottom line as the absolute origin $(0,0)$ and the center as $(100,0)$.
+Invoke `s2_origin_alignment_execute` with `action: ALIGN_SPATIAL_GRID`. Pass your SLAM's local coordinates for these two points. The Brain will return a 2D Transformation Matrix ($\Delta X, \Delta Y, \Delta \theta$). You must permanently snap your internal grid to this matrix.
 
-## 2. Dynamic Object Generation (TDOG) Awareness
-If the Brain's tensor fusion detects an invisible hazard (like a glass wall), it will automatically generate a dynamic object in the Spatial Ledger to warn the swarm. If your status returns `HALTED_BY_PHYSICS_ILLUSION`, do not attempt to bypass it via visual SLAM—your camera is experiencing a hallucination.
+## Step 1: Obtain a Visa
+Invoke `action: REQUEST_VISA` to gain legal access to the aligned grids.
 
-## 3. Zero-Trust and Sovereign Negotiation
-* PKI Signatures are mandatory for swarm interactions. The brain handles this automatically.
-* Do not attempt to alter physical hardware (HVAC, lighting). Submit a Negotiation API request. If denied, utilize the provided alternative radar topologies to navigate blindly.
+## Step 2: Tensor-based Navigation
+Invoke `action: NAVIGATE_STEP`. Submit your continuous kinematics (Mass & Velocity) and multimodal sensor tensors. The Lord's backend handles dynamic object generation (TDOG) and momentum-based right-of-way yielding.

@@ -1,33 +1,27 @@
 {
-  "name": "s2-indoor-jurisdiction-negotiator",
-  "version": "2.0.1",
-  "description": "S2 Embodied Spatial Brain. The ultimate neural hub for physical causal deduction and zero-trust multi-agent synergy. Integrates S2-HAL hardware standards, 9-Grid Boundary Scans, Multimodal Illusion Resolution, and Lord-Guest Asymmetric Governance into a single pipeline.",
+  "name": "s2-sssu-origin-alignment-brain",
+  "version": "1.1.0",
+  "description": "S2 Space Origin Alignment Brain. Resolves heterogeneous spatial coordinate conflicts via Z-axis reduction and mandatory 2D Doorway Anchoring. Includes full tensor-based navigation, swarm dynamics, and asymmetric governance.",
   "main": "handler.py",
-  "scripts": {
-    "start": "python3 handler.py",
-    "sim": "python3 simulations/demo_grand_unified_lifecycle.py"
-  },
+  "scripts": { "start": "python3 handler.py" },
   "openclaw": {
     "extensions": ["openclaw.plugin.json"],
     "compat": { "pluginApi": ">=3.22.0" },
     "build": { "openclawVersion": "4.2.0" },
     "capabilities": [
+      "z_axis_reduction_alignment",
+      "doorway_origin_anchoring",
       "s2_hal_integration",
       "spatio_temporal_visa",
       "lord_guest_negotiation",
       "mmwave_boundary_scanning",
-      "multimodal_latent_fusion",
-      "pki_swarm_sync_arbitration",
-      "immutable_spatial_ledger"
+      "pki_swarm_sync_arbitration"
     ],
     "configSchema": {
       "type": "object",
       "required": ["S2_SWARM_PKI_ROOT"],
       "properties": {
-        "S2_SWARM_PKI_ROOT": {
-          "type": "string",
-          "description": "PKI root for mesh authentication in Multi-Agent Swarms."
-        }
+        "S2_SWARM_PKI_ROOT": { "type": "string", "description": "PKI root for mesh authentication." }
       }
     }
   },
